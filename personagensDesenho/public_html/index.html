@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Formulario do Personagem</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style type="text/css">
+
+            .rotulo{
+                width: 150px;
+                display: block;
+                float: left;
+            }
+            .linha{
+                clear: both;
+                margin: 10px;
+            }
+        </style>
+        
+        <script type="text/javascript">
+            
+            function validar(){
+                
+                var cadastro = document.forms ["cadastroPersonagem"];
+                
+                var nome = cadastro.nome.value;
+                
+                var apelido = cadastro.apelido.value;
+                
+                var amigos = cadastro.amigos.value;
+                
+                var idade = cadastro.idade.value;
+                
+                var estilo = cadastro.estilo.value;
+                
+                var carater = cadastro.carater.value;
+                
+                if (nome.trim() == ""){
+                    alert("Preencha o nome");
+                    return false;
+                }
+                
+                if (apelido.length < 3 || apelido.length > 20){
+                    alert("Apelido deve tem entre 3 e 20 carateres");
+                    return false;
+                }
+                
+                var virgulaSeparar = amigos.indexOf(",")
+                
+                if ( virgulaSeparar < 2 ){
+                    alert("Use virgula para separar os nomes");
+                    return false;
+                }
+                
+                if ( idade < 0 || idade > 100 || idade == ""){
+                    alert("Idade deve estar entre 0 e 100 anos");
+                    return false;
+                }
+                
+                if ( estilo.length <= 20 ){
+                    alert("Estilo de roupa deve conter no minimo 20 caracteres ");
+                    return false;
+                }
+                
+                if ( carater == ""){
+                    alert("Voce deve selecionar uma opçao no campo 'Do Bem ou do Mal'");
+                    return false;
+                }
+            }
+            
+        </script>
+
+    </head>
+    <body>
+
+        <h1>Cadastro dos Personagens</h1>
+
+        <form id="cadastroPersonagem" name="cadastroPersonagem" action="salvar.jsp" method="post" 
+              onsubmit="return validar()" >
+
+            <div class="linha">
+                <label class="rotulo">Nome</label>
+                <input type="text" name="nome"/>
+            </div>
+
+            <div class="linha">
+                <label class="rotulo">Apelido</label>
+                <input type="text" name="apelido"/>
+            </div>
+
+            <div class="linha">
+                <label class="rotulo">Amigos</label>
+                <input type="text" name="amigos" placeholder="use virgula para separar"/>
+            </div>
+
+            <div class="linha">
+                <label class="rotulo">Idade</label>
+                <input type="number" name="idade"  />
+            </div>
+
+            <div class="linha">
+                <label class="rotulo">Estilo de Roupa</label>
+                <textarea name="estilo" rows="10" cols="30" placeholder="digite aqui como o personagem se veste, deve contem no minimo 20 caracteres"></textarea>
+            </div>
+
+            <div class="linha">
+                <label class="rotulo">Do Bem ou do Mal</label>
+                <input type="radio" name="carater" value="B" id="bem"  />
+                <label for="bem">Bem</label>
+                <input type="radio" name="carater" value="M" id="mal" />
+                <label for="mal">Mal</label>
+            </div>
+
+            <div class="linha">
+                <input type="submit" name="enviar" value="Cadastrar" /> 
+            </div>
+
+        </form>
+
+    </body>
+</html>
